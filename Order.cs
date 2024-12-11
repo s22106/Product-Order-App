@@ -62,5 +62,15 @@ namespace APN_Promise_app
             }
             return sum;
         }
+        public override string ToString()
+        {
+            string allProducts = "";
+            foreach (OrderItem item in Items)
+            {
+                if (item.Amount > 0)
+                    allProducts += $"{item.Product.Name}: {item.Amount}\n";
+            }
+            return allProducts;
+        }
     }
 }

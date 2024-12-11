@@ -30,6 +30,17 @@ while (isRunning)
         AddProduct();
         continue;
     }
+
+    if (operation == "3")
+    {
+        Console.Clear();
+        Console.WriteLine("Zawartość zamówienia:");
+        Console.WriteLine(order);
+        Console.Write("Cena: ");
+        Console.WriteLine(order.OrderTotal);
+        Console.WriteLine("\n-------------------------\n");
+        continue;
+    }
 }
 
 void AddProduct()
@@ -53,30 +64,31 @@ void AddProduct()
             Console.WriteLine("Niepoprawna wartość");
             continue;
         }
+
         if (product == "6")
         {
             Console.Clear();
             Console.WriteLine("Anulowano dodawanie produktu");
             break;
         }
-        else
+
+        Console.WriteLine("Podal ilość danego produktu do dodania:");
+        string? amount = Console.ReadLine().Trim();
+        if (amount.All(char.IsDigit) == false)
         {
-            Console.WriteLine("Podal ilość danego produktu do dodania:");
-            string? amount = Console.ReadLine().Trim();
-            if (amount.All(char.IsDigit) == false)
-            {
-                Console.Clear();
-                Console.WriteLine("Niepoprawna ilość");
-                continue;
-            }
-            int index = 0;
-            int val = 0;
-            Int32.TryParse(product, out index);
-            Int32.TryParse(amount, out val);
-            order.AddItemToOrder(index, val);
-            isAdded = true;
             Console.Clear();
-            Console.WriteLine($"Dodano {val} {order.Items[index].Product.Name}");
+            Console.WriteLine("Niepoprawna ilość");
+            continue;
         }
+
+        int index = 0;
+        int amountParsed = 0;
+        Int32.TryParse(product, out index);
+        Int32.TryParse(amount, out amountParsed);
+        order.AddItemToOrder(index, amountParsed);
+        index -= 1;
+        isAdded = true;
+        Console.Clear();
+        Console.WriteLine($"Dodano {amountParsed} {order.Items[index].Product.Name}");
     }
 }
