@@ -17,7 +17,7 @@ while (isRunning)
 
     string? operation = Console.ReadLine().Trim();
 
-    if (!Regex.IsMatch(operation, "[1-4]"))
+    if (!Regex.IsMatch(operation, "^[1-4]$"))
     {
         Console.Clear();
         Console.WriteLine("Niepoprawna wartość");
@@ -53,17 +53,19 @@ while (isRunning)
 
 void RemoveProduct()
 {
+    Console.Clear();
     bool isRemoved = false;
     var addedProductsCount = order.GetAddedProductsCount();
     while (!isRemoved)
     {
-        Console.Clear();
+
         Console.WriteLine($"Wybierz produkt (za pomocą liczby od 1 do {addedProductsCount}) do usuniecia:\n");
         Console.WriteLine("\nAktualny stan zamówienia:");
         Console.WriteLine(order);
+        Console.WriteLine("6.Anuluj operację");
 
         string? product = Console.ReadLine().Trim();
-        if (!Regex.IsMatch(product, $"[1-{addedProductsCount + 1}]"))
+        if (!Regex.IsMatch(product, $"^[1-{addedProductsCount + 1}]$"))
         {
             Console.Clear();
             Console.WriteLine("Niepoprawna wartość");
@@ -116,7 +118,7 @@ void AddProduct()
         Console.WriteLine("6.Anuluj operację");
 
         string? product = Console.ReadLine().Trim();
-        if (!Regex.IsMatch(product, $"[1-{totalItems + 1}]"))
+        if (!Regex.IsMatch(product, $"^[1-{totalItems + 1}]$"))
         {
             Console.Clear();
             Console.WriteLine("Niepoprawna wartość");

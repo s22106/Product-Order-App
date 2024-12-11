@@ -67,10 +67,12 @@ namespace APN_Promise_app
         public override string ToString()
         {
             string allProducts = "";
+            int id = 1;
             foreach (OrderItem item in Items)
             {
                 if (item.Amount > 0)
-                    allProducts += $"{item.Product.Name}: {item.Amount}\n";
+                    allProducts += $"{id++}. {item.Product.Name}: {item.Amount}\n";
+
             }
             return allProducts;
         }
