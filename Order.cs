@@ -11,6 +11,17 @@ namespace APN_Promise_app
     {
         public List<OrderItem> Items { get; set; }
         public decimal OrderTotal { get { return CalculatePrice(); } }
+        public Order()
+        {
+            Items = new List<OrderItem>
+            {
+                new OrderItem(new Product("Laptop",  2500), 0),
+                new OrderItem(new Product("Klawiatura", 120), 0),
+                new OrderItem(new Product("Mysz", 90), 0),
+                new OrderItem(new Product("Monitor", 1000),0),
+                new OrderItem(new Product("Kaczka debugująca", 66),0)
+            };
+        }
         private decimal CalculatePrice()
         {
             decimal sum = 0;
@@ -22,20 +33,17 @@ namespace APN_Promise_app
             return sum;
         }
 
-        public void AddItemToOrder(Product product, int amount)
+        public void AddItemToOrder(int index, int amount)
         {
-            Items.Add(new OrderItem(product, amount));
+            Items[index].Amount += amount;
         }
         public void RemoveItemFromOrder(int index, int amount)
         {
-            if (Items[index].Amount == amount)
-            {
-                Items.RemoveAt(index);
-            }
-            else
-            {
-                Items[index].Amount -= amount;
-            }
+            Items[index].Amount -= amount;
+        }
+        public bool CheckItemAmountToRemove(int index, int amount)
+        {
+            return Items[index].Amount >= amount;
         }
         private decimal CalculateDiscount(decimal sum)
         {
