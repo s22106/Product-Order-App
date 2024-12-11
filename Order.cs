@@ -47,15 +47,16 @@ namespace APN_Promise_app
         }
         private decimal CalculateDiscount(decimal sum)
         {
+            int TotalItems = Items.Sum(x => x.Amount);
             if (sum > 5000)
             {
                 sum = sum * 0.95m;
             }
-            if (Items.Count >= 3)
+            if (TotalItems >= 3)
             {
                 sum -= Items.Min(x => x.Product.Price) * 0.2m;
             }
-            else if (Items.Count == 2)
+            else if (TotalItems == 2)
             {
                 sum -= Items.Min(x => x.Product.Price) * 0.1m;
             }
