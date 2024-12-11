@@ -40,11 +40,12 @@ namespace APN_Promise_app
         }
         public void RemoveItemFromOrder(int index, int amount)
         {
-            Items[index].Amount -= amount;
+            List<OrderItem> itemToRemove = Items.Where(x => x.Amount > 0).ToList();
+            Items.Where(x => x.Product.Name == itemToRemove[index].Product.Name).SingleOrDefault().Amount -= amount;
         }
         public bool CheckItemAmountToRemove(int index, int amount)
         {
-            return Items[index].Amount >= amount;
+            return Items.Where(x => x.Amount > 0).ToList()[index].Amount >= amount;
         }
         private decimal CalculateDiscount(decimal sum)
         {
@@ -84,6 +85,11 @@ namespace APN_Promise_app
                 id++;
             }
             return info;
+        }
+
+        public int GetAddedProductsCount()
+        {
+            return Items.Where(x => x.Amount > 0).Count();
         }
     }
 }
