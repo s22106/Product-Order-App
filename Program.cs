@@ -17,7 +17,7 @@ while (isRunning)
 
     if (!Regex.IsMatch(operation, "[1-4]"))
     {
-        Console.Clear();
+        //Console.Clear();
         Console.WriteLine("Niepoprawna wartość");
         continue;
     }
@@ -33,7 +33,7 @@ while (isRunning)
 
     if (operation == "3")
     {
-        Console.Clear();
+        //Console.Clear();
         Console.WriteLine("Zawartość zamówienia:");
         Console.WriteLine(order);
         Console.Write("Cena: ");
@@ -45,7 +45,7 @@ while (isRunning)
 
 void AddProduct()
 {
-    Console.Clear();
+    //Console.Clear();
     bool isAdded = false;
     while (!isAdded)
     {
@@ -60,14 +60,14 @@ void AddProduct()
         string? product = Console.ReadLine().Trim();
         if (!Regex.IsMatch(product, "[1-6]"))
         {
-            Console.Clear();
+            //Console.Clear();
             Console.WriteLine("Niepoprawna wartość");
             continue;
         }
 
         if (product == "6")
         {
-            Console.Clear();
+            //Console.Clear();
             Console.WriteLine("Anulowano dodawanie produktu");
             break;
         }
@@ -76,7 +76,7 @@ void AddProduct()
         string? amount = Console.ReadLine().Trim();
         if (amount.All(char.IsDigit) == false)
         {
-            Console.Clear();
+            //Console.Clear();
             Console.WriteLine("Niepoprawna ilość");
             continue;
         }
@@ -85,10 +85,11 @@ void AddProduct()
         int amountParsed = 0;
         Int32.TryParse(product, out index);
         Int32.TryParse(amount, out amountParsed);
-        order.AddItemToOrder(index, amountParsed);
         index -= 1;
+
+        order.AddItemToOrder(index, amountParsed);
         isAdded = true;
-        Console.Clear();
+        //Console.Clear();
         Console.WriteLine($"Dodano {amountParsed} {order.Items[index].Product.Name}");
     }
 }

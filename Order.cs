@@ -54,11 +54,11 @@ namespace APN_Promise_app
             }
             if (TotalItems >= 3)
             {
-                sum -= Items.Min(x => x.Product.Price) * 0.2m;
+                sum -= Items.Where(x => x.Amount > 0).Min(x => x.Product.Price) * 0.2m;
             }
             else if (TotalItems == 2)
             {
-                sum -= Items.Min(x => x.Product.Price) * 0.1m;
+                sum -= Items.Where(x => x.Amount > 0).Min(x => x.Product.Price) * 0.1m;
             }
             return sum;
         }
