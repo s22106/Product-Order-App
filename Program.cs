@@ -6,6 +6,8 @@ bool isRunning = true;
 
 Order order = new Order();
 
+int totalItems = order.Items.Count;
+
 
 
 while (isRunning)
@@ -114,23 +116,18 @@ void AddProduct()
     bool isAdded = false;
     while (!isAdded)
     {
-        Console.WriteLine("Wybierz produkt (za pomocą liczby od 1 do 5) do dodania:\n");
-        Console.WriteLine("1.Laptop: 2500 PLN");
-        Console.WriteLine("2.Klawiatura: 120 PLN");
-        Console.WriteLine("3.Mysz: 90 PLN");
-        Console.WriteLine("4.Monitor: 1000 PLN");
-        Console.WriteLine("5.Kaczka debugująca: 66 PLN");
+        order.GetAllProductInfo();
         Console.WriteLine("6.Anuluj operację");
 
         string? product = Console.ReadLine().Trim();
-        if (!Regex.IsMatch(product, "[1-6]"))
+        if (!Regex.IsMatch(product, $"[1-{totalItems + 1}]"))
         {
             Console.Clear();
             Console.WriteLine("Niepoprawna wartość");
             continue;
         }
 
-        if (product == "6")
+        if (product == $"{totalItems + 1}")
         {
             Console.Clear();
             Console.WriteLine("Anulowano dodawanie produktu");

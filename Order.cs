@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Dynamic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.VisualBasic;
@@ -71,6 +72,18 @@ namespace APN_Promise_app
                     allProducts += $"{item.Product.Name}: {item.Amount}\n";
             }
             return allProducts;
+        }
+
+        public string GetAllProductInfo()
+        {
+            string info = "";
+            int id = 1;
+            foreach (var Product in Items)
+            {
+                info += $"{id}. {Product.Product.Name}: {Product.Product.Price} PLN\n";
+                id++;
+            }
+            return info;
         }
     }
 }
