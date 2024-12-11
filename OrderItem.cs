@@ -9,5 +9,10 @@ namespace APN_Promise_app
     {
         public Product Product { get; set; }
         public int Amount { get; set; }
+        public OrderItem(Product product, int amount)
+        {
+            Product = product;
+            Amount = amount;
+        }
     }
 }
