@@ -62,7 +62,7 @@ void RemoveProduct()
         Console.WriteLine($"Wybierz produkt (za pomocą liczby od 1 do {addedProductsCount}) do usuniecia:\n");
         Console.WriteLine("\nAktualny stan zamówienia:");
         Console.WriteLine(order);
-        Console.WriteLine("6.Anuluj operację");
+        Console.WriteLine($"{addedProductsCount + 1}.Anuluj operację");
 
         string? product = Console.ReadLine().Trim();
         if (!Regex.IsMatch(product, $"^[1-{addedProductsCount + 1}]$"))
@@ -115,7 +115,7 @@ void AddProduct()
     while (!isAdded)
     {
         Console.WriteLine(order.GetAllProductInfo());
-        Console.WriteLine("6.Anuluj operację");
+        Console.WriteLine($"{totalItems + 1}.Anuluj operację");
 
         string? product = Console.ReadLine().Trim();
         if (!Regex.IsMatch(product, $"^[1-{totalItems + 1}]$"))
